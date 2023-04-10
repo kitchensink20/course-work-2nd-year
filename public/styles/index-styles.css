@@ -1,0 +1,39 @@
+body, html{
+    background-color: gray;
+}
+
+.white-image {
+    filter: brightness(0) invert(1);
+}
+
+section{
+    background-color: lightgray;
+    height: fit-content;
+    padding-bottom: 50px;
+}
+
+#tableContainer{
+    padding-top: 150px;
+    padding-bottom: 80px;
+}
+
+.btn-close, .edit-btn{
+    cursor: pointer;
+}
+
+.edit-btn{
+    height: 20px;
+}
+
+.main-page-container{
+    margin-top: 70px;
+    background-image: url('../images/KPI.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-container{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+

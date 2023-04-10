@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course work</title>
+    <link href="./styles/index-styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./images/kpi-logo.png" alt="..." height="45" class="me-2 white-image">
+        <span>KPI - Dorms DB</span>
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse"
+      data-bs-target="#nav" aria-contols="nav" aria-label="Expand Navigation">
+        <div class="navbar-toggler-icon"></div>
+      </button>
+      <div class="collapse navbar-collapse " id="nav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/" class="nav-link text-light active" aria-current="page">Головна сторінка</a>
+          </li>
+          <li class="nav-item">
+            <a href="/faculties" class="nav-link text-light active" aria-current="page">Факультети</a>
+          </li>
+          <li class="nav-item">
+            <a href="/dorms" class="nav-link text-light active" aria-current="page">Гуртожитки</a>
+          </li>
+          <li class="nav-item">
+            <a href="/rooms" class="nav-link text-light active" aria-current="page">Кімнати</a>
+          </li>
+          <li class="nav-item">
+            <a href="/students" class="nav-link text-light active" aria-current="page">Студенти</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container-fluid" id="mainSection">
+  </section>
+  <footer class="bg-dark text-center text-lg-start text-white position-absolute b-0 w-100">
+    <div class="text-center p-3">
+      © 2023 Alina Lytovchenko's Course Work
+    </div>
+  </footer>
+
+  <template>
+    <div id="tableContainer" class="mx-auto d-flex align-items-center flex-column h-100">
+      <h4 id="tableTitle"></h4>
+      <table class="table table-striped table-responsive w-50">
+        <thead id="tableHeader" class="table-group-divider">
+          <tr id="headerRow">
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="table-group-divider">
+        </tbody>
+      </table>
+      <button id="addBtn" type="button" class="btn btn-sm btn-dark p-15"></button>
+    </div>
+  </template>
+  <template>
+    <div class="main-page-container bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
+      <h1 class="mb-3 h2">База даних гуртожитків КПІ</h1>
+    </div>
+    <div class="text-container">
+      <p>
+        Щороку на початку осені, коли влягаються абітурієнтські пристрасті, бліднуть літні емоції й студентство стає до навчання, у студмістечку університету розпочинається найгарячіша пора – поселення. Хоча, по справедливості, вона тут і не закінчується. Адже утримувати містечко з понад 13 тис. мешканців у робочому, тим більше комфортному для проживання стані – дуже непроста справа. На сьогоднішній день усі студенти НТУУ "КПІ", хто потребував помешкання, забезпечені житлом: 3014 першокурсників, 9493 студенти 2-5 курсів та 407 аспірантів.
+      </p>
+      <p>
+        Протягом поточного року на виконання наказу ректора в гуртожитках НТУУ "КПІ" було організовано і виконано комплекс заходів, спрямованих на покращення умов проживання студентів. За сухими рядками звітів про кількість покращень і їх вартість стоїть постійна копітка робота дирекції студмістечка, адміністрації університету та факультетів (інститутів). Та головне, щоб мешканці відчували турботу про себе.
+      </p>
+      <p>
+        Що змінилося на краще? Оновилися коридори гуртожитку №8; фасад гуртожитку №9; окремі приміщення гуртожитку №12; умивальні кімнати гуртожитку №14; стояк кухонь гуртожитку №16; окремі блоки гуртожитку №20; вхідна група гуртожитку №22; окремі житлові кімнати в гуртожитках № 6, 16, 19, 20, санаторії-профілакторії та ін. У гуртожитках № 1, 3, 4, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20 студентські будівельні загони влітку провели косметичні ремонти місць загального користування. З метою енергозбереження було частково замінено вікна на металопластикові в гуртожитках № 18, 19, 20.
+      </p>
+      <p>
+        У рамках програми проведення в Україні фіналу чемпіонату Європи з футболу "Євро-2012" капітально відремонтовано коридори, холи та ліфтові в гуртожитку №18. Наразі провадиться ремонт кухні в гуртожитку №9, кімнат загального користування гуртожитку №12, а також косметичний ремонт у гуртожитку № 22.
+      </p>
+      <p>
+        Добрі господарі щорічно свої помешкання оновлюють (підмальовують, як кажуть у народі). Тож косметичні ремонти стали звичним явищем у гуртожитках. Зокрема, "повеселішали" робочі кімнати в гуртожитках №14, 19; коридори гуртожитків №1, 4, 14, 19, 20; кімнати загального користування гуртожитків №3, 8; хол гуртожитку №13; ізолятори в гуртожитках №1, 15; кухня і підсобні приміщення в санаторії-профілакторії.
+      </p>
+      <p>
+        Для покращення побутових умов студентів у процесі підготовки гуртожитків до опалювального сезону було замінено частини трубопроводів системи опалення в гуртожитках №13 і 16; замінено трубопроводи водопостачання, а також сантехнічне обладнання на кухнях, в умивальних кімнатах і душових гуртожитку №13 та здійснено ряд інших заходів з поточного ремонту систем водо-, електро-, теплозабезпечення гуртожитків студмістечка.
+      </p>
+      <p>
+        Відомо, що зима, весна, літо, осінь, як і сесія та канікули, приходять за розкладом. Тож, шановні політехніки, щоб комфортно почуватися в гуртожитку, варто не лише сподіватися на покращення від адміністрації, а й самим турбуватися про утримання свого помешкання в придатному стані. Які б прикрощі не траплялися в студентські роки, з часом згадується лише світле і приємне. Так було, і так буде.
+      </p>
+    </div>
+  </template>
+
+  <script src="./js/index-script.js"></script>
+  <script src="./js/faculties-manager.js"></script>
+  <script src="./js/rooms-manager.js"></script>
+  <script src="./js/students-manager.js"></script>
+  <script src="./js/dorms-manager.js"></script>
+</body>
+</html>
