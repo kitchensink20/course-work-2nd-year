@@ -17,7 +17,7 @@ section{
     padding-bottom: 80px;
 }
 
-.btn-close, .edit-btn{
+.btn-close, .edit-btn, select, option{
     cursor: pointer;
 }
 
@@ -37,3 +37,6 @@ section{
     margin-left: 10%;
 }
 
+#courseWorkDataContainer p{
+    font-size: 1.3em;
+}

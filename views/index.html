@@ -49,6 +49,339 @@
     </div>
   </footer>
 
+   <!--window for creating faculties-->
+  <div class="modal fade" id="createFaculty" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="createFacultyModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="createFacultyModalLabel">Додати новий факультет</h4>
+        </div>
+        <form id="createFacultyForm" method="post" action="faculties">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="facultyNameInput" name="facultyName" placeholder="Введіть скорочену назву факультету" required>
+                <label for="facultyName" class="form-label">Назва факультету</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="headOfSelectionComitteeNameInput" name="headOfSelectionComitteeName" placeholder="Введіть ПІБ голови факультету" required>
+                <label for="headOfSelectionComitteeName" class="form-label">ПІБ голови приймальної комісії</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="addBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Додати">
+            <button type="button" id="closeBtn" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--window for creating dormitories-->
+  <div class="modal fade" id="createDorm" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="createDormModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="createDormModalLabel">Додати новий гуртожиток</h4>
+        </div>
+        <form id="createDormForm" method="post" action="dorms">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="number" class="form-control" id="dormNumberInput" name="dormNumber" placeholder="Введіть номер гуртожитку" min="1" required>
+                <label for="dormNumber" class="form-label">Номер гуртожитку</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="dormCommandantNameInput" name="dormCommandantName" placeholder="Введіть ПІБ коменданту гуртожитка" required>
+                <label for="dormCommandantName" class="form-label">ПІБ коменданту гуртожитка</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="facultyId" id="facultyNameForDormInput" class="form-select" placeholder="Введіть назву факультету, якому належить гуртожиток" required></select>
+                <label for="facultyId" class="form-label">Назва факультету, якому належить гуртожиток</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="addBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Додати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!--window for creating rooms-->
+  <div class="modal fade" id="createRoom" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="createRoomModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="createRoomModalLabel">Додати нову кімнату</h4>
+        </div>
+        <form id="createRoomForm" method="post" action="rooms">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <select name="dormId" id="dormNumberForRoomInput" class="form-select" placeholder="Введіть номер гуртожитку, якому належить кімната" required></select>
+                <label for="dormId" class="form-label">Номер гуртожитку, якому належить кімната</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="roomNumberInput" name="roomNumber" placeholder="Введіть номер кімнати" min="100" max="999" required>
+                <label for="roomNumber" class="form-label">Номер кімнати</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="roomCapacityInput" name="roomCapacity" placeholder="Введіть вмістність кімнати" min="1" max="4" required>
+                <label for="roomCapacity" class="form-label">Вмістність кімнати</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="roomGender" id="roomGenderInput" class="form-select" placeholder="Оберіть стать, яка проживає в кімнаті" required>
+                  <option value="true">Ж</option>
+                  <option value="false">Ч</option>
+                </select>
+                <label for="roomGender" class="form-label">Стать, яка проживає в кімнаті</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="addBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Додати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!--window for creating students-->
+  <div class="modal fade" id="createStudent" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="createStudentModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="createStudentModalLabel">Додати нового студента</h4>
+        </div>
+        <form id="createStudentForm" method="post" action="students">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="studentFullNameInput" name="studentFullName" placeholder="Введіть ПІБ студента" required>
+                <label for="studentFullName" class="form-label">ПІБ студента</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="studentGender" id="studentGenderInput" class="form-select" placeholder="Оберіть стать студента" required>
+                  <option value="true">Ж</option>
+                  <option value="false">Ч</option>
+                </select>
+                <label for="studentGender" class="form-label">Стать студента</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="studentBenefit" id="studentBenefitInput" class="form-select" placeholder="Оберіть чи має студент пільгу" required>
+                  <option value="true">+</option>
+                  <option value="false">-</option>
+                </select>
+                <label for="studentBenefit" class="form-label">Наявність пільги</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="facultyId" id="facultyNameForStudentInput" class="form-select" placeholder="Оберіть факультет, на якму навчається студент" required></select>
+                <label for="facultyId" class="form-label">Факультет, на якому навчається студент</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="dormId" id="dormNumberForStudentInput" class="form-select" placeholder="Введіть номер гуртожитку, в якому проживає студент" required></select>
+                <label for="dormId" class="form-label">Номер гуртожитку, в якому проживає студент</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="roomId" id="roomNumberForStudentInput" class="form-select" placeholder="Оберіть номер кімнати, в якій проживає студент" disabled="true" required></select>
+                <label for="roomId" class="form-label">Номер кімнати, в якій проживає студент</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="addBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Додати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!--window for editing faculties-->
+  <div class="modal fade" id="editFaculty" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="editFacultyModalLabel">
+    <div class="modal-dialog modal-dialog-centered editBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="editFacultyModalLabel">Редагувати дані про факультет</h4>
+        </div>
+        <form id="editFacultyForm" method="POST" action="/faculties?_method=PUT">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="facultyNameEditInput" name="facultyName" placeholder="Введіть скорочену назву факультету" required>
+                <label for="facultyName" class="form-label">Назва факультету</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="headOfSelectionComitteeNameEditInput" name="headOfSelectionComitteeName" placeholder="Введіть ПІБ голови факультету" required>
+                <label for="headOfSelectionComitteeName" class="form-label">ПІБ голови приймальної комісії</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="editBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Редагувати">
+            <button type="button" id="closeBtn" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--window for editing dorms-->
+  <div class="modal fade" id="editDorm" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="editDormModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="editDormModalLabel">Редагувати дані про гуртожиток</h4>
+        </div>
+        <form id="editDormForm" method="post" action="/dorms?_method=PUT">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="number" class="form-control" id="dormNumberEditInput" name="dormNumber" placeholder="Введіть номер гуртожитку" min="1" disabled required>
+                <label for="dormNumber" class="form-label">Номер гуртожитку</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="dormCommandantNameEditInput" name="dormCommandantName" placeholder="Введіть ПІБ коменданту гуртожитка" required>
+                <label for="dormCommandantName" class="form-label">ПІБ коменданту гуртожитка</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="facultyId" id="facultyNameForDormEditInput" class="form-select" placeholder="Введіть назву факультету, якому належить гуртожиток" required></select>
+                <label for="facultyId" class="form-label">Назва факультету, якому належить гуртожиток</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="editBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Редагувати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!--window for editing rooms-->
+  <div class="modal fade" id="editRoom" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="editRoomModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="editRoomModalLabel">Редагувати дані про кімнату</h4>
+        </div>
+        <form id="editRoomForm" method="post" action="/rooms?_method=PUT">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <select name="dormId" id="dormNumberForRoomEditInput" class="form-select" placeholder="Введіть номер гуртожитку, якому належить кімната" required></select>
+                <label for="dormId" class="form-label">Номер гуртожитку, якому належить кімната</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="roomNumberEditInput" name="roomNumber" placeholder="Введіть номер кімнати" min="100" max="999" required>
+                <label for="roomNumber" class="form-label">Номер кімнати</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="roomCapacityEditInput" name="roomCapacity" placeholder="Введіть вмістність кімнати" min="1" max="4" required>
+                <label for="roomCapacity" class="form-label">Вмістність кімнати</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="roomOcuppacityEditInput" name="roomOcuppacity" placeholder="Введіть вмістність кімнати" min="0" max="4" required>
+                <label for="roomOcuppacity" class="form-label">Заповненість кімнати</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="roomGender" id="roomGenderEditInput" class="form-select" placeholder="Оберіть стать, яка проживає в кімнаті" required>
+                  <option value="true">Ж</option>
+                  <option value="false">Ч</option>
+                </select>
+                <label for="roomGender" class="form-label">Стать, яка проживає в кімнаті</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="editBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Редагувати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!--window for editing students-->
+  <div class="modal fade" id="editStudent" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="editStudentModalLabel">
+    <div class="modal-dialog modal-dialog-centered addBlock">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="editStudentModalLabel">Редагувати дані про студента</h4>
+        </div>
+        <form id="editStudentForm" method="post" action="/students?_method=PUT">
+          <div class="modal-body">
+            <div class="form-floating">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="studentFullNameEditInput" name="studentFullName" placeholder="Введіть ПІБ студента" required>
+                <label for="studentFullName" class="form-label">ПІБ студента</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="studentGender" id="studentGenderEditInput" class="form-select" placeholder="Оберіть стать студента" required>
+                  <option value="true">Ж</option>
+                  <option value="false">Ч</option>
+                </select>
+                <label for="studentGender" class="form-label">Стать студента</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="studentBenefit" id="studentBenefitEditInput" class="form-select" placeholder="Оберіть чи має студент пільгу" required>
+                  <option value="true">+</option>
+                  <option value="false">-</option>
+                </select>
+                <label for="studentBenefit" class="form-label">Наявність пільги</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="facultyId" id="facultyNameForStudentEditInput" class="form-select" placeholder="Оберіть факультет, на якму навчається студент" required></select>
+                <label for="facultyId" class="form-label">Факультет, на якому навчається студент</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="dormId" id="dormNumberForStudentEditInput" class="form-select" placeholder="Введіть номер гуртожитку, в якому проживає студент" required></select>
+                <label for="dormId" class="form-label">Номер гуртожитку, в якому проживає студент</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <select name="roomId" id="roomNumberForStudentEditInput" class="form-select" placeholder="Оберіть номер кімнати, в якій проживає студент" required></select>
+                <label for="roomId" class="form-label">Номер кімнати, в якій проживає студент</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input id="editBtn" type="submit" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15" value="Редагувати">
+            <button type="button" class="btn btn-dark btn-sm p-10" data-bs-dismiss="modal">Відмінити</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
   <template>
     <div id="tableContainer" class="mx-auto d-flex align-items-center flex-column h-100">
       <h4 id="tableTitle"></h4>
@@ -60,34 +393,26 @@
         <tbody id="tableBody" class="table-group-divider">
         </tbody>
       </table>
-      <button id="addBtn" type="button" class="btn btn-sm btn-dark p-15"></button>
+      <button id="addBtn" type="button" data-bs-toggle="modal" class="btn btn-sm btn-dark p-15"></button>
     </div>
   </template>
   <template>
     <div class="main-page-container bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
       <h1 class="mb-3 h2">База даних гуртожитків КПІ</h1>
     </div>
-    <div class="text-container">
+    <div id="courseWorkDataContainer" class="text-container">
+      <h3>
+        Курсова робота студентки групи ІС-11 Литовченко Аліни Олександрівни
+      </h3>
+      <br>
       <p>
-        Щороку на початку осені, коли влягаються абітурієнтські пристрасті, бліднуть літні емоції й студентство стає до навчання, у студмістечку університету розпочинається найгарячіша пора – поселення. Хоча, по справедливості, вона тут і не закінчується. Адже утримувати містечко з понад 13 тис. мешканців у робочому, тим більше комфортному для проживання стані – дуже непроста справа. На сьогоднішній день усі студенти НТУУ "КПІ", хто потребував помешкання, забезпечені житлом: 3014 першокурсників, 9493 студенти 2-5 курсів та 407 аспірантів.
+        Задачею даної курсової роботи було створити базу даних до відповідної предметної галузі, а саме ”Поселення студентів 1-го курсу в гуртожитки”. Ця курсова робота є дуже актуальною, оскільки має практичне значення для багатьох студентів, які проживають в гуртожитках. Вона дозволить ефективно вести облік студентів першого курсу та їхнього поселення в гуртожитки.
       </p>
       <p>
-        Протягом поточного року на виконання наказу ректора в гуртожитках НТУУ "КПІ" було організовано і виконано комплекс заходів, спрямованих на покращення умов проживання студентів. За сухими рядками звітів про кількість покращень і їх вартість стоїть постійна копітка робота дирекції студмістечка, адміністрації університету та факультетів (інститутів). Та головне, щоб мешканці відчували турботу про себе.
+        Дана база даних створена на платформі Node.js та з використанням документо-орієнтованої системи керування базами даних MongoDB. Додаток на основі бази даних створений у програмному середовищі Visual Studio Code. Використання Node.js та MongoDB дозволяє створити ефективну та гнучку систему, яка легко масштабується та підтримується. Додаток, розроблений на основі цієї бази даних, може бути використаний для швидкого та зручного доступу до інформації про студентів та гуртожитки, що значно полегшує процес управління цими даними.
       </p>
       <p>
-        Що змінилося на краще? Оновилися коридори гуртожитку №8; фасад гуртожитку №9; окремі приміщення гуртожитку №12; умивальні кімнати гуртожитку №14; стояк кухонь гуртожитку №16; окремі блоки гуртожитку №20; вхідна група гуртожитку №22; окремі житлові кімнати в гуртожитках № 6, 16, 19, 20, санаторії-профілакторії та ін. У гуртожитках № 1, 3, 4, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20 студентські будівельні загони влітку провели косметичні ремонти місць загального користування. З метою енергозбереження було частково замінено вікна на металопластикові в гуртожитках № 18, 19, 20.
-      </p>
-      <p>
-        У рамках програми проведення в Україні фіналу чемпіонату Європи з футболу "Євро-2012" капітально відремонтовано коридори, холи та ліфтові в гуртожитку №18. Наразі провадиться ремонт кухні в гуртожитку №9, кімнат загального користування гуртожитку №12, а також косметичний ремонт у гуртожитку № 22.
-      </p>
-      <p>
-        Добрі господарі щорічно свої помешкання оновлюють (підмальовують, як кажуть у народі). Тож косметичні ремонти стали звичним явищем у гуртожитках. Зокрема, "повеселішали" робочі кімнати в гуртожитках №14, 19; коридори гуртожитків №1, 4, 14, 19, 20; кімнати загального користування гуртожитків №3, 8; хол гуртожитку №13; ізолятори в гуртожитках №1, 15; кухня і підсобні приміщення в санаторії-профілакторії.
-      </p>
-      <p>
-        Для покращення побутових умов студентів у процесі підготовки гуртожитків до опалювального сезону було замінено частини трубопроводів системи опалення в гуртожитках №13 і 16; замінено трубопроводи водопостачання, а також сантехнічне обладнання на кухнях, в умивальних кімнатах і душових гуртожитку №13 та здійснено ряд інших заходів з поточного ремонту систем водо-, електро-, теплозабезпечення гуртожитків студмістечка.
-      </p>
-      <p>
-        Відомо, що зима, весна, літо, осінь, як і сесія та канікули, приходять за розкладом. Тож, шановні політехніки, щоб комфортно почуватися в гуртожитку, варто не лише сподіватися на покращення від адміністрації, а й самим турбуватися про утримання свого помешкання в придатному стані. Які б прикрощі не траплялися в студентські роки, з часом згадується лише світле і приємне. Так було, і так буде.
+        Написання даної програми проводиться з метою продемонструвати та засвоїти власні навички у проектуванні баз даних і розробки застосувань під них.
       </p>
     </div>
   </template>

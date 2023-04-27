@@ -17,7 +17,50 @@ class StudentsManager {
         document.querySelector('#mainSection').append(temp.content.cloneNode(true));
 
         document.querySelector('#tableTitle').innerText = "Список студентів, що проживають в гуртожитках";
-        document.querySelector('#addBtn').innerText = "Додати нового студента";
+        let addBtn = document.querySelector('#addBtn');
+        addBtn.innerText = "Додати нового студента";
+        addBtn.dataset.bsTarget = "#createStudent";
+
+        const genderSelectElement = document.querySelector("#studentGenderInput");
+        const facultySelectElement = document.querySelector("#facultyNameForStudentInput");
+        const dormSelectElement = document.querySelector("#dormNumberForStudentInput");
+        const roomSelectElement = document.querySelector("#roomNumberForStudentInput");
+        let choosenGender;
+        genderSelectElement.addEventListener("change", (e) => {
+            if(e.target.value == 'true')
+                choosenGender = true;
+            else
+                choosenGender = false;
+            roomSelectElement.disabled = false;
+        });
+        for(let i = 0; i < this.faculties.length; i++){
+            let option = document.createElement("option");
+            option.value = this.faculties[i]._id;
+            option.textContent = this.faculties[i].name;
+            facultySelectElement.appendChild(option);   
+        }
+        facultySelectElement.addEventListener("change", (e) => {
+            dormSelectElement.innerHTML = "";
+            for(let i = 0; i < this.dorms.length; i++){
+                if(e.target.value == this.dorms[i].faculty_id){
+                    let option = document.createElement("option");
+                    option.value = this.dorms[i]._id;
+                    option.textContent = this.dorms[i].number;
+                    dormSelectElement.appendChild(option);    
+                }
+            }
+        });
+        dormSelectElement.addEventListener("change", (e) => { 
+            roomSelectElement.innerHTML = "";
+            for(let i = 0; i < this.rooms.length; i++) {
+                if(e.target.value == this.rooms[i].dorm_id && this.rooms[i].capacity > this.rooms[i].ocuppied && this.rooms[i].gender == choosenGender){
+                    let option = document.createElement("option");
+                    option.value = this.rooms[i]._id;
+                    option.textContent = this.rooms[i].number;
+                    roomSelectElement.appendChild(option);
+                }
+            }
+        });
 
         for(let i = 0; i < this.students.length; i++){
             if(i == 0){
@@ -113,16 +156,62 @@ class StudentsManager {
             editBtn.classList.add('edit-btn');
             editBtnTd.appendChild(editBtn);
             row.appendChild(editBtnTd);
+            editBtn.dataset.bsToggle = "modal";
+            editBtn.dataset.bsTarget = "#editStudent";
+            editBtn.addEventListener('click', () => {
+                document.querySelector("#studentFullNameEditInput").value = this.students[i].full_name;
+                document.querySelector("#studentGenderEditInput").selectedIndex = this.students[i].gender ? 0 : 1;
+                document.querySelector("#studentBenefitEditInput").selectedIndex = this.students[i].benefit ? 0 : 1;
+                for(let j = 0; j < this.faculties.length; j++){
+                    let option = document.createElement("option");
+                    option.textContent = this.faculties[j].name;
+                    option.value = this.faculties[j]._id;
+                    document.querySelector("#facultyNameForStudentEditInput").appendChild(option);
+                    if(this.faculties[j]._id == this.students[i].faculty_id)
+                        document.querySelector("#facultyNameForStudentEditInput").selectedIndex = j;
+                }
+                for(let j = 0; j < this.dorms.length; j++){
+                    let option = document.createElement("option");
+                    option.textContent = this.dorms[j].number;
+                    option.value = this.dorms[j]._id;
+                    document.querySelector("#dormNumberForStudentEditInput").appendChild(option);
+                    if(this.dorms[j]._id == this.students[i].dorm_id)
+                        document.querySelector("#dormNumberForStudentEditInput").selectedIndex = j;
+                }
+                for(let j = 0; j < this.rooms.length; j++){
+                    let option = document.createElement("option");
+                    option.textContent = this.rooms[j].number;
+                    option.value = this.rooms[j]._id;
+                    document.querySelector("#roomNumberForStudentEditInput").appendChild(option);
+                    if(this.rooms[j]._id == this.students[i].room_id)
+                        document.querySelector("#roomNumberForStudentEditInput").selectedIndex = j;
+                }
+            });
 
             let deleteBtnTd = document.createElement('td');
             let deleteBtn = document.createElement('btn-close');
             deleteBtn.classList.add('btn-close');
             deleteBtnTd.appendChild(deleteBtn);
+            deleteBtn.addEventListener("click", () => {
+                this.#deleteStudent(i);
+            });
             row.appendChild(deleteBtnTd);
 
             document.querySelector('#tableBody').append(row);
          }
     }
 
-    
+    #deleteStudent(index){
+        let deleteConfirm = confirm('Ви впевнені, що хочете видалити студента ' + this.students[index].name + " з бази даних?");
+        if(!deleteConfirm)
+            return;
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("DELETE", window.location.pathname + '/' + this.students[index]._id, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(JSON.stringify(this.students[index]));
+        alert("Оновіть сторінку, щоб побачити зміни.");
+    }
 }

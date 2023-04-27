@@ -1,9 +1,11 @@
 class RoomsManager {
     //---------concructor-------------------------------
 
-    constructor(dorms, rooms){
+    constructor(dorms, rooms, students){
         this.rooms = rooms;
         this.dorms = dorms;
+        this.students = students;
+        this.dorms.sort((a, b) => (a.number > b.number) ? 1 : ((b.number > a.number) ? -1 : 0));
         this.rooms.sort((a, b) => (a.dorm_id > b.dorm_id) ? 1 : ((b.dorm_id > a.dorm_id) ? -1 : 0));
     }
 
@@ -14,7 +16,16 @@ class RoomsManager {
         document.querySelector('#mainSection').append(temp.content.cloneNode(true));
 
         document.querySelector('#tableTitle').innerText = "Список кімнат";
-        document.querySelector('#addBtn').innerText = "Додати нову кімнату";
+        let addBtn = document.querySelector('#addBtn');
+        addBtn.innerText = "Додати нову кімнату";
+        addBtn.dataset.bsTarget = "#createRoom";
+
+        for(let i = 0; i < this.dorms.length; i++){
+            let option = document.createElement("option");
+            option.value = this.dorms[i]._id;
+            option.textContent = this.dorms[i].number;
+            document.querySelector("#dormNumberForRoomInput").appendChild(option);
+        }
 
         for(let i = 0; i < this.rooms.length; i++){
             if(i == 0){
@@ -39,6 +50,11 @@ class RoomsManager {
                 genderTh.innerText = 'Стать';
                 firstRow.append(genderTh);
                 genderTh.classList.add('pe-5');
+
+                let ocuppiedTh = document.createElement('th');
+                ocuppiedTh.innerText = 'Заповненість';
+                firstRow.append(ocuppiedTh);
+                ocuppiedTh.classList.add('pe-5');
             }
 
             let row = document.createElement('tr');
@@ -67,21 +83,64 @@ class RoomsManager {
                 genderTd.innerText = 'Ч';
             row.appendChild(genderTd);
 
+            let ocuppiedTd = document.createElement('td');
+            ocuppiedTd.innerText = this.rooms[i].ocuppied;
+            row.appendChild(ocuppiedTd);
+
             let editBtnTd = document.createElement('td');
             let editBtn = document.createElement('img');
             editBtn.src = "./images/edit-btn.png";
             editBtn.classList.add('edit-btn');
             editBtnTd.appendChild(editBtn);
             row.appendChild(editBtnTd);
+            editBtn.dataset.bsToggle = "modal";
+            editBtn.dataset.bsTarget = "#editRoom";
+            editBtn.addEventListener('click', () => {
+                for(let j = 0; j < this.dorms.length; j++){
+                    let option = document.createElement("option");
+                    option.textContent = this.dorms[j].number;
+                    option.value = this.dorms[j]._id;
+                    document.querySelector("#dormNumberForRoomEditInput").appendChild(option);
+                    if(this.dorms[j]._id == this.rooms[i].dorm_id)
+                        document.querySelector("#dormNumberForRoomEditInput").selectedIndex = j;
+                }
+                document.querySelector("#roomNumberEditInput").value = this.rooms[i].number; 
+                document.querySelector("#roomCapacityEditInput").value = this.rooms[i].capacity;
+                document.querySelector("#roomOcuppacityEditInput").value = this.rooms[i].ocuppied;
+                document.querySelector("#roomGenderEditInput").selectedIndex = this.rooms[i].gender ? 1 : 0;
+            });
 
             let deleteBtnTd = document.createElement('td');
             let deleteBtn = document.createElement('btn-close');
             deleteBtn.classList.add('btn-close');
             deleteBtnTd.appendChild(deleteBtn);
+            deleteBtn.addEventListener("click", () => {
+                this.#deleteRoom(i);
+            });
             row.appendChild(deleteBtnTd);
 
             document.querySelector('#tableBody').append(row);
          }
     }
 
+    #deleteRoom(index){
+        let dormNumber;
+        for(let j = 0; j < this.dorms.length; j++){
+            if(this.dorms[j]._id == this.rooms[index].dorm_id){
+                dormNumber = this.dorms[j].number;
+                break;
+            }
+        }
+        let deleteConfirm = confirm('Ви впевнені, що хочете видалити кімнату №' + this.rooms[index].number + " гуртожитку №" + dormNumber + " з бази даних?");
+        if(!deleteConfirm)
+            return;
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("DELETE", window.location.pathname + '/' + this.rooms[index]._id, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(JSON.stringify(this.rooms[index]));
+        alert("Оновіть сторінку, щоб побачити зміни.");
+    }
 }   

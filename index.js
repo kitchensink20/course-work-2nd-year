@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override');
 const db = require('./models/db-connection');
+const bodyParser = require('body-parser');
 
 //routers
 const facultiesRouter = require('./routes/faculties');
@@ -15,6 +17,9 @@ const port = 8080;
 
 db.once('open', () => {
     app.use(express.static(path.join(__dirname, 'public'))); 
+    app.use(bodyParser.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(methodOverride('_method'));
     app.use('/faculties', facultiesRouter);
     app.use('/dorms', dormsRouter);
     app.use('/rooms', roomsRouter);

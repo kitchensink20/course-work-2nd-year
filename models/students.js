@@ -30,4 +30,22 @@ async function getAllStudents(){
     return students;
 }
 
-module.exports = { getAllStudents }
+async function deleteStudent(student){
+    await Student.findByIdAndDelete(student._id);
+}
+
+async function updateStudent(updatedStudent){
+    await Student.findOneAndUpdate({ full_name: updatedStudent.full_name }, 
+        { gender: updatedStudent.gender,
+        benefit: updatedStudent.benefit,
+        faculty_id: updatedStudent.faculty_id,
+        room_id: updatedStudent.room_id });
+}
+
+async function createStudent(student) {
+    const newStudent = new Student(student);
+    await newStudent.save();
+    return newStudent;
+}
+
+module.exports = { getAllStudents, deleteStudent, updateStudent, createStudent }

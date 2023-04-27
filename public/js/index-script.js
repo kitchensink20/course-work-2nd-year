@@ -29,10 +29,10 @@ if(window.location.pathname == "/") {
         dormsManager.displayDormsInTable();
     });
 } else if(window.location.pathname == "/rooms") {
-    Promise.all([fetch(dormsDataURL), fetch(roomsDataURL)])
+    Promise.all([fetch(dormsDataURL), fetch(roomsDataURL), fetch(studentsDataURL)])
     .then((responses) => Promise.all(responses.map((res) => res.json())))
     .then((data) => {
-        roomsManager = new RoomsManager(data[0], data[1]);
+        roomsManager = new RoomsManager(data[0], data[1], data[2]);
         roomsManager.displayRoomsInTable();
     });
 } else if(window.location.pathname == "/students") {

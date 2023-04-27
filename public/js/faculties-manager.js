@@ -14,7 +14,9 @@ class FacultiesManager {
         document.querySelector('#mainSection').append(temp.content.cloneNode(true));
 
         document.querySelector('#tableTitle').innerText = "Список факультетів";
-        document.querySelector('#addBtn').innerText = "Додати новий факультет";
+        let addBtn = document.querySelector('#addBtn');
+        addBtn.innerText = "Додати новий факультет";
+        addBtn.dataset.bsTarget = "#createFaculty";
        
         for(let i = 0; i < this.faculties.length; i++){
             
@@ -48,7 +50,13 @@ class FacultiesManager {
             editBtn.classList.add('edit-btn');
             editBtnTd.appendChild(editBtn);
             row.appendChild(editBtnTd);
-
+            editBtn.dataset.bsToggle = "modal";
+            editBtn.dataset.bsTarget = "#editFaculty";
+            editBtn.addEventListener('click', () => {
+                document.querySelector("#facultyNameEditInput").value = this.faculties[i].name;
+                document.querySelector("#headOfSelectionComitteeNameEditInput").value = this.faculties[i].head_of_selection_comittee_name;    
+            });
+           
             let deleteBtnTd = document.createElement('td');
             let deleteBtn = document.createElement('btn-close');
             deleteBtn.classList.add('btn-close');
@@ -63,7 +71,7 @@ class FacultiesManager {
     }
 
     #deleteFaculty(index){
-        let deleteConfirm = confirm('Ви впевнені, що хочете видалити факультут ' + this.faculties[index].name + "?");
+        let deleteConfirm = confirm('Ви впевнені, що хочете видалити факультeт ' + this.faculties[index].name + " з бази даних?");
         if(!deleteConfirm)
             return;
 
@@ -73,5 +81,8 @@ class FacultiesManager {
         xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.send(JSON.stringify(this.faculties[index]));
+        alert("Оновіть сторінку, щоб побачити зміни.");
     }
+
+    
 }
